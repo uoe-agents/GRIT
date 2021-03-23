@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+imageio
+loguru
+shapely
+pydot
+sklearn
+scikit-image
+diff-match-patch
