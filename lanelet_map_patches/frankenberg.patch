@@ -1,4 +1,4 @@
-@@ -132510,350 +132510,8 @@
- on%3E%0A
--  %3Crelation id='-1769659' action='modify' visible='true'%3E%0A    %3Cmember type='way' ref='-1769471' role='right' /%3E%0A    %3Cmember type='way' ref='-1769316' role='left' /%3E%0A    %3Ctag k='location' v='urban' /%3E%0A    %3Ctag k='one_way' v='yes' /%3E%0A    %3Ctag k='region' v='de' /%3E%0A    %3Ctag k='subtype' v='road' /%3E%0A    %3Ctag k='type' v='lanelet' /%3E%0A  %3C/relation%3E%0A
- %3C/os
+@@ -132506,15 +132506,357 @@
+ lation%3E%0A
++  %3Crelation id='-1769659' action='modify' visible='true'%3E%0A    %3Cmember type='way' ref='-1769471' role='right' /%3E%0A    %3Cmember type='way' ref='-1769316' role='left' /%3E%0A    %3Ctag k='location' v='urban' /%3E%0A    %3Ctag k='one_way' v='yes' /%3E%0A    %3Ctag k='region' v='de' /%3E%0A    %3Ctag k='subtype' v='road' /%3E%0A    %3Ctag k='type' v='lanelet' /%3E%0A  %3C/relation%3E%0A
+ %3C/osm%3E%0A

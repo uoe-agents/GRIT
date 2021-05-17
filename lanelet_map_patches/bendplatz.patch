@@ -1,55 +1,55 @@
-@@ -26081,24 +26081,703 @@
- 4791837' /%3E%0A
-+  %3Cnode id='-1755663' action='modify' visible='true' lat='50.78203329192' lon='6.07121430304' /%3E%0A  %3Cnode id='-1755665' action='modify' visible='true' lat='50.78206318191' lon='6.07121497359' /%3E%0A  %3Cnode id='-1755667' action='modify' visible='true' lat='50.78209391982' lon='6.07119854506' /%3E%0A  %3Cnode id='-1755669' action='modify' visible='true' lat='50.78211469439' lon='6.07117842849' /%3E%0A  %3Cnode id='-1755671' action='modify' visible='true' lat='50.78207992877' lon='6.07120826807' /%3E%0A  %3Cnode id='-1755673' action='modify' visible='true' lat='50.78207166133' lon='6.07121128555' /%3E%0A  %3Cnode id='-1755675' action='modify' visible='true' lat='50.78201315326' lon='6.07121027973' /%3E%0A
-   %3Cnode id='
-@@ -45653,1558 +45653,8 @@
+@@ -26089,687 +26089,8 @@
   /%3E%0A
--  %3Cnode id='-1800776' action='modify' visible='true' lat='50.78205611368' lon='6.07108424174' /%3E%0A  %3Cnode id='-1800944' action='modify' visible='true' lat='50.78197664657' lon='6.07118830344' /%3E%0A  %3Cnode id='-1800945' action='modify' visible='true' lat='50.7819990341' lon='6.07120370997' /%3E%0A  %3Cnode id='-1800946' action='modify' visible='true' lat='50.78201338945' lon='6.07121019694' /%3E%0A  %3Cnode id='-1800947' action='modify' visible='true' lat='50.78203338439' lon='6.07121479187' /%3E%0A  %3Cnode id='-1800948' action='modify' visible='true' lat='50.78206294956' lon='6.07121371071' /%3E%0A  %3Cnode id='-1800949' action='modify' visible='true' lat='50.7820713235' lon='6.07121154839' /%3E%0A  %3Cnode id='-1800950' action='modify' visible='true' lat='50.78208687511' lon='6.07120316939' /%3E%0A  %3Cnode id='-1800951' action='modify' visible='true' lat='50.78211456037' lon='6.07117857299' /%3E%0A  %3Cnode id='-1800961' action='modify' visible='true' lat='50.78210447747' lon='6.07118884402' /%3E%0A  %3Cnode id='-1800973' action='modify' visible='true' lat='50.78209336918' lon='6.07119911504' /%3E%0A  %3Cnode id='-1800986' action='modify' visible='true' lat='50.78207986834' lon='6.07120803461' /%3E%0A  %3Cnode id='-1801005' action='modify' visible='true' lat='50.78204825243' lon='6.07121452158' /%3E%0A  %3Cnode id='-1801029' action='modify' visible='true' lat='50.78204124565' lon='6.07121452158' /%3E%0A  %3Cnode id='-1801077' action='modify' visible='true' lat='50.78200655357' lon='6.07120749403' /%3E%0A  %3Cnode id='-1801087' action='modify' visible='true' lat='50.78198638771' lon='6.07119695272' /%3E%0A
-   %3Cw
-@@ -68537,32 +68537,361 @@
- al' /%3E%0A  %3C/way%3E%0A
-+  %3Cway id='-1766449' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755427' /%3E%0A    %3Cnd ref='-1755675' /%3E%0A    %3Cnd ref='-1755663' /%3E%0A    %3Cnd ref='-1755665' /%3E%0A    %3Cnd ref='-1755673' /%3E%0A    %3Cnd ref='-1755671' /%3E%0A    %3Cnd ref='-1755667' /%3E%0A    %3Cnd ref='-1755669' /%3E%0A    %3Cnd ref='-1755553' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A
-   %3Cway id='-1766
-@@ -73236,41 +73236,8 @@
-  /%3E%0A
--    %3Ctag k='type' v='virtual' /%3E%0A
-   %3C/
-@@ -92453,839 +92453,8 @@
+-  %3Cnode id='-1755663' action='modify' visible='true' lat='50.78203329192' lon='6.07121430304' /%3E%0A  %3Cnode id='-1755665' action='modify' visible='true' lat='50.78206318191' lon='6.07121497359' /%3E%0A  %3Cnode id='-1755667' action='modify' visible='true' lat='50.78209391982' lon='6.07119854506' /%3E%0A  %3Cnode id='-1755669' action='modify' visible='true' lat='50.78211469439' lon='6.07117842849' /%3E%0A  %3Cnode id='-1755671' action='modify' visible='true' lat='50.78207992877' lon='6.07120826807' /%3E%0A  %3Cnode id='-1755673' action='modify' visible='true' lat='50.78207166133' lon='6.07121128555' /%3E%0A  %3Cnode id='-1755675' action='modify' visible='true' lat='50.78201315326' lon='6.07121027973' /%3E%0A
+   %3Cn
+@@ -44970,16 +44970,1566 @@
+ 207' /%3E%0A
++  %3Cnode id='-1800776' action='modify' visible='true' lat='50.78205611368' lon='6.07108424174' /%3E%0A  %3Cnode id='-1800944' action='modify' visible='true' lat='50.78197664657' lon='6.07118830344' /%3E%0A  %3Cnode id='-1800945' action='modify' visible='true' lat='50.7819990341' lon='6.07120370997' /%3E%0A  %3Cnode id='-1800946' action='modify' visible='true' lat='50.78201338945' lon='6.07121019694' /%3E%0A  %3Cnode id='-1800947' action='modify' visible='true' lat='50.78203338439' lon='6.07121479187' /%3E%0A  %3Cnode id='-1800948' action='modify' visible='true' lat='50.78206294956' lon='6.07121371071' /%3E%0A  %3Cnode id='-1800949' action='modify' visible='true' lat='50.7820713235' lon='6.07121154839' /%3E%0A  %3Cnode id='-1800950' action='modify' visible='true' lat='50.78208687511' lon='6.07120316939' /%3E%0A  %3Cnode id='-1800951' action='modify' visible='true' lat='50.78211456037' lon='6.07117857299' /%3E%0A  %3Cnode id='-1800961' action='modify' visible='true' lat='50.78210447747' lon='6.07118884402' /%3E%0A  %3Cnode id='-1800973' action='modify' visible='true' lat='50.78209336918' lon='6.07119911504' /%3E%0A  %3Cnode id='-1800986' action='modify' visible='true' lat='50.78207986834' lon='6.07120803461' /%3E%0A  %3Cnode id='-1801005' action='modify' visible='true' lat='50.78204825243' lon='6.07121452158' /%3E%0A  %3Cnode id='-1801029' action='modify' visible='true' lat='50.78204124565' lon='6.07121452158' /%3E%0A  %3Cnode id='-1801077' action='modify' visible='true' lat='50.78200655357' lon='6.07120749403' /%3E%0A  %3Cnode id='-1801087' action='modify' visible='true' lat='50.78198638771' lon='6.07119695272' /%3E%0A
+   %3Cway i
+@@ -69420,337 +69420,8 @@
  ay%3E%0A
--  %3Cway id='-1767533' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755213' /%3E%0A    %3Cnd ref='-1800776' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A  %3Cway id='-1767537' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755891' /%3E%0A    %3Cnd ref='-1800776' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A  %3Cway id='-1767687' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755231' /%3E%0A    %3Cnd ref='-1800944' /%3E%0A    %3Cnd ref='-1801087' /%3E%0A    %3Cnd ref='-1800945' /%3E%0A    %3Cnd ref='-1801077' /%3E%0A    %3Cnd ref='-1800946' /%3E%0A    %3Cnd ref='-1800947' /%3E%0A    %3Cnd ref='-1801029' /%3E%0A    %3Cnd ref='-1801005' /%3E%0A    %3Cnd ref='-1800948' /%3E%0A    %3Cnd ref='-1800949' /%3E%0A    %3Cnd ref='-1800986' /%3E%0A    %3Cnd ref='-1800950' /%3E%0A    %3Cnd ref='-1800973' /%3E%0A    %3Cnd ref='-1800961' /%3E%0A    %3Cnd ref='-1800951' /%3E%0A    %3Cnd ref='-1755553' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A
+-  %3Cway id='-1766449' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755427' /%3E%0A    %3Cnd ref='-1755675' /%3E%0A    %3Cnd ref='-1755663' /%3E%0A    %3Cnd ref='-1755665' /%3E%0A    %3Cnd ref='-1755673' /%3E%0A    %3Cnd ref='-1755671' /%3E%0A    %3Cnd ref='-1755667' /%3E%0A    %3Cnd ref='-1755669' /%3E%0A    %3Cnd ref='-1755553' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A
+   %3Cw
+@@ -73770,24 +73770,57 @@
+ 1755237' /%3E%0A
++    %3Ctag k='type' v='virtual' /%3E%0A
+   %3C/way%3E%0A  %3C
+@@ -93024,16 +93024,847 @@
+  %3C/way%3E%0A
++  %3Cway id='-1767533' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755213' /%3E%0A    %3Cnd ref='-1800776' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A  %3Cway id='-1767537' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755891' /%3E%0A    %3Cnd ref='-1800776' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A  %3Cway id='-1767687' action='modify' visible='true'%3E%0A    %3Cnd ref='-1755231' /%3E%0A    %3Cnd ref='-1800944' /%3E%0A    %3Cnd ref='-1801087' /%3E%0A    %3Cnd ref='-1800945' /%3E%0A    %3Cnd ref='-1801077' /%3E%0A    %3Cnd ref='-1800946' /%3E%0A    %3Cnd ref='-1800947' /%3E%0A    %3Cnd ref='-1801029' /%3E%0A    %3Cnd ref='-1801005' /%3E%0A    %3Cnd ref='-1800948' /%3E%0A    %3Cnd ref='-1800949' /%3E%0A    %3Cnd ref='-1800986' /%3E%0A    %3Cnd ref='-1800950' /%3E%0A    %3Cnd ref='-1800973' /%3E%0A    %3Cnd ref='-1800961' /%3E%0A    %3Cnd ref='-1800951' /%3E%0A    %3Cnd ref='-1755553' /%3E%0A    %3Ctag k='type' v='virtual' /%3E%0A  %3C/way%3E%0A
+   %3Crelat
+@@ -115053,319 +115053,8 @@
+ on%3E%0A
+-  %3Crelation id='-1766639' action='modify' visible='true'%3E%0A    %3Cmember type='way' ref='-1766353' role='left' /%3E%0A    %3Cmember type='way' ref='-1766573' role='left' /%3E%0A    %3Ctag k='location' v='urban' /%3E%0A    %3Ctag k='one_way' v='yes' /%3E%0A    %3Ctag k='subtype' v='road' /%3E%0A    %3Ctag k='type' v='lanelet' /%3E%0A  %3C/relation%3E%0A
    %3Cr
-@@ -113635,32 +113635,343 @@
- %3E%0A  %3C/relation%3E%0A
-+  %3Crelation id='-1766639' action='modify' visible='true'%3E%0A    %3Cmember type='way' ref='-1766353' role='left' /%3E%0A    %3Cmember type='way' ref='-1766573' role='left' /%3E%0A    %3Ctag k='location' v='urban' /%3E%0A    %3Ctag k='one_way' v='yes' /%3E%0A    %3Ctag k='subtype' v='road' /%3E%0A    %3Ctag k='type' v='lanelet' /%3E%0A  %3C/relation%3E%0A
-   %3Crelation id='
-@@ -114101,25 +114101,25 @@
+@@ -115196,25 +115196,25 @@
  '-176644
--8
-+9
+-9
++8
  ' role='
- left' /%3E
-@@ -114102,35 +114102,36 @@
- -1766449' role='
--lef
-+righ
- t' /%3E%0A    %3Cmembe
-@@ -114156,20 +114156,20 @@
- -176
--7687
-+6448
- ' role='
- righ
-@@ -114156,36 +114156,35 @@
+ right' /
+@@ -115197,36 +115197,35 @@
  -1766448' role='
 -righ
 +lef
+ t' /%3E%0A    %3Cmembe
+@@ -115242,36 +115242,36 @@
+ y' ref='-176
+-6448
++7687
+ ' role='
+ left' /%3E%0A   
+@@ -115250,35 +115250,36 @@
+ -1767687' role='
+-lef
++righ
  t' /%3E%0A    %3Ctag k
-@@ -128023,12 +128023,12 @@
- -176
--7537
-+6510
- ' ro
-@@ -148771,320 +148771,8 @@
- on%3E%0A
--  %3Crelation id='-1766911' action='modify' visible='true'%3E%0A    %3Cmember type='way' ref='-1767533' role='right' /%3E%0A    %3Cmember type='way' ref='-1766571' role='left' /%3E%0A    %3Ctag k='location' v='urban' /%3E%0A    %3Ctag k='one_way' v='yes' /%3E%0A    %3Ctag k='subtype' v='road' /%3E%0A    %3Ctag k='type' v='lanelet' /%3E%0A  %3C/relation%3E%0A
- %3C/os
+@@ -129106,36 +129106,36 @@
+ ='way' ref='-176
+-6510
++7537
+ ' role='right' /
+@@ -149862,15 +149862,327 @@
+ lation%3E%0A
++  %3Crelation id='-1766911' action='modify' visible='true'%3E%0A    %3Cmember type='way' ref='-1767533' role='right' /%3E%0A    %3Cmember type='way' ref='-1766571' role='left' /%3E%0A    %3Ctag k='location' v='urban' /%3E%0A    %3Ctag k='one_way' v='yes' /%3E%0A    %3Ctag k='subtype' v='road' /%3E%0A    %3Ctag k='type' v='lanelet' /%3E%0A  %3C/relation%3E%0A
+ %3C/osm%3E%0A
