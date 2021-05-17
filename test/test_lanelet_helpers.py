@@ -77,3 +77,17 @@ def test_overlap_area_overlap():
     assert overlap_area == 0.5
     assert overlap_centroid.x == 7/3
     assert overlap_centroid.y == 5/3
+
+
+def test_dist_along_path_first_lanelet():
+    map = get_test_map()
+    path = [map.laneletLayer.get(1), map.laneletLayer.get(3)]
+    point = BasicPoint2d(1.0, 0.5)
+    assert LaneletHelpers.dist_along_path(path, point) == pytest.approx(1)
+
+
+def test_dist_along_path_second_lanelet():
+    map = get_test_map()
+    path = [map.laneletLayer.get(1), map.laneletLayer.get(3)]
+    point = BasicPoint2d(3.0, 0.5)
+    assert LaneletHelpers.dist_along_path(path, point) == pytest.approx(3)

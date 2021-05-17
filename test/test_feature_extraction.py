@@ -152,7 +152,7 @@ def test_get_vehicles_in_front():
     frame.add_agent_state(0, AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(1, AgentState(0, 3.0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(2, AgentState(0, 3.0, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
-    vehicles = FeatureExtractor.get_vehicles_in_front(route, frame)
+    vehicles = FeatureExtractor.get_vehicles_in_route(route, frame)
     assert set(vehicles) == {0, 1}
 
 
@@ -173,6 +173,23 @@ def test_vehicle_in_front():
     agent_id, dist = FeatureExtractor.vehicle_in_front(state, route, frame)
     assert agent_id == 1
     assert dist == 2
+
+
+def test_vehicle_in_front_behind():
+    feature_extractor = get_feature_extractor()
+    start_lanelet = feature_extractor.lanelet_map.laneletLayer.get(1)
+    goal = (3.5, 0.5)
+    route = feature_extractor.route_to_goal(start_lanelet, goal)
+
+    frame = Frame(0)
+
+    frame.add_agent_state(0, AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+    frame.add_agent_state(1, AgentState(0, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+    state = AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+    agent_id, dist = FeatureExtractor.vehicle_in_front(state, route, frame)
+    assert agent_id is None
+    assert dist == np.inf
 
 
 def test_goal_type_straight_on():

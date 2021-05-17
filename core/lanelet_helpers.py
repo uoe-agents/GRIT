@@ -29,6 +29,17 @@ class LaneletHelpers:
         return geometry.toArcCoordinates(centerline, point).length
 
     @staticmethod
+    def dist_along_path(lanelet_path, point):
+        dist = 0
+        for lanelet in lanelet_path:
+            if geometry.inside(lanelet, point):
+                dist += LaneletHelpers.dist_along(lanelet, point)
+                return dist
+            else:
+                dist += geometry.length2d(lanelet)
+        return None
+
+    @staticmethod
     def heading_at(lanelet, point):
         centerline = geometry.to2D(lanelet.centerline)
         proj_point = geometry.project(centerline, point)
