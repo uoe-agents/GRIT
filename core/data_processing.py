@@ -1,12 +1,17 @@
 import argparse
+import json
 from multiprocessing import Pool
 
 import pandas as pd
 
 from core.feature_extraction import FeatureExtractor, GoalDetector
 from core.scenario import Scenario
-from core.base import get_data_dir, get_scenario_config_dir
-from core.generate_dataset_split import load_dataset_splits
+from core.base import get_data_dir, get_scenario_config_dir, get_base_dir
+
+
+def load_dataset_splits():
+    with open(get_base_dir() + '/core/dataset_split.json', 'r') as f:
+        return json.load(f)
 
 
 def get_dataset(scenario_name, subset='train', features=True):
@@ -73,7 +78,10 @@ def prepare_episode_dataset(params):
 
     for agent_idx, (agent_id, trajectory) in enumerate(trimmed_trajectories.items()):
 
-        print('agent_id {}/{}'.format(agent_idx, len(trimmed_trajectories) - 1))
+        print('scenario {} episode {} agent_id {}/{}'.format(
+            scenario_name, episode_idx, agent_idx, len(trimmed_trajectories) - 1))
+
+
         # iterate through each sampled point in time for trajectory
 
         reachable_goals_list = []
@@ -124,6 +132,7 @@ def prepare_episode_dataset(params):
 
     samples = pd.DataFrame(data=samples_list)
     samples.to_csv(get_data_dir() + '{}_e{}.csv'.format(scenario_name, episode_idx), index=False)
+    print('finished scenario {} episode {}'.format(scenario_name, episode_idx))
 
 
 def main():
