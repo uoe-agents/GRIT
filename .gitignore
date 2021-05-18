@@ -136,6 +136,9 @@ dmypy.json
 data/
 images/
 videos/
+data_iros/
+images_iros/
+
 
 # OSM files
 *.osm
