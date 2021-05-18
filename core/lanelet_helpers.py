@@ -30,14 +30,12 @@ class LaneletHelpers:
 
     @staticmethod
     def dist_along_path(lanelet_path, point):
-        dist = 0
-        for lanelet in lanelet_path:
-            if geometry.inside(lanelet, point):
-                dist += LaneletHelpers.dist_along(lanelet, point)
-                return dist
-            else:
-                dist += geometry.length2d(lanelet)
-        return None
+        all_arc_coords = [geometry.toArcCoordinates(geometry.to2D(l.centerline), point) for l in lanelet_path]
+        all_lat = [abs(c.distance) for c in all_arc_coords]
+        closest_idx = np.argmin(all_lat)
+        completed_lanelet_dist = sum([geometry.length2d(l) for l in list(lanelet_path)[:closest_idx]])
+        dist = completed_lanelet_dist + all_arc_coords[closest_idx].length
+        return dist
 
     @staticmethod
     def heading_at(lanelet, point):

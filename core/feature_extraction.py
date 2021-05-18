@@ -239,12 +239,14 @@ class FeatureExtractor:
         vehicle_in_front = None
 
         path = route.shortestPath()
+
         ego_dist_along = LaneletHelpers.dist_along_path(path, state.point)
 
         # find vehicle in front with closest distance
         for agent_id in vehicles_in_front:
             agent_point = frame.agents[agent_id].point
-            dist = LaneletHelpers.dist_along_path(path, agent_point) - ego_dist_along
+            agent_dist = LaneletHelpers.dist_along_path(path, agent_point)
+            dist = agent_dist - ego_dist_along
             if 1e-4 < dist < min_dist:
                 vehicle_in_front = agent_id
                 min_dist = dist

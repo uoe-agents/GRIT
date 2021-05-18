@@ -151,6 +151,9 @@ def main():
         for episode_idx in range(len(scenario.config.episodes)):
             params_list.append((scenario_name, episode_idx))
 
+    # for params in params_list:
+    #     prepare_episode_dataset(params)
+
     with Pool(4) as p:
         p.map(prepare_episode_dataset, params_list)
 
