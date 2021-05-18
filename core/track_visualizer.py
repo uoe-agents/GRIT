@@ -5,6 +5,7 @@ Modified version of code from https://github.com/ika-rwth-aachen/drone-dataset-t
 import numpy as np
 import matplotlib.pyplot as plt
 import skimage.io
+from core.feature_extraction import FeatureExtractor
 from matplotlib.widgets import Button, Slider
 from loguru import logger
 from IPython.display import Image, display
@@ -15,7 +16,7 @@ from decisiontree.dt_goal_recogniser import DecisionTreeGoalRecogniser
 
 class TrackVisualizer(object):
     def __init__(self, config, tracks, static_info, meta_info, fig=None,
-                 goal_recogniser=None, scenario=None, episode=None, agent_id=None):
+                 goal_recogniser=None, scenario=None, episode=None, agent_id=None, episode_dataset=None):
         self.config = config
         self.input_path = config["input_path"]
         self.recording_name = config["recording_name"]
@@ -26,7 +27,8 @@ class TrackVisualizer(object):
         self.goal_recogniser = goal_recogniser
         self.scenario = scenario
         self.episode = episode
-        self.agent_id = agent_id
+        self.episode_dataset = episode_dataset
+        self.agent_id = agent_id  # agent to record in video
 
         # Get configurations
         if self.scale_down_factor % 2 != 0:
@@ -321,12 +323,47 @@ class TrackVisualizer(object):
                 plotted_objects.append(text_patch)
 
         # Add listener to figure
-        self.fig.canvas.mpl_connect('pick_event', self.on_click)
+        self.fig.canvas.mpl_connect('pick_event', self.display_features_on_click)
         # Save the plotted objects in a list
         self.plotted_objects = plotted_objects
 
         if saved_tree:
             plt.savefig(get_img_dir() + '/video_road/{}.png'.format(self.current_frame))
+
+    def display_features_on_click(self, event):
+        artist = event.artist
+        text_value = artist._text
+        if "ID" not in text_value:
+            return
+
+        track_id_string = text_value[:text_value.index("|")]
+        track_id = int(track_id_string[2:])
+
+        agent_data = self.episode_dataset.loc[self.episode_dataset.agent_id==track_id]
+        goal_idxes = agent_data.possible_goal.unique()
+
+        features = FeatureExtractor.feature_names.keys()
+
+        for goal_idx in goal_idxes:
+            goal_data = agent_data.loc[agent_data.possible_goal==goal_idx]
+
+            fig = plt.figure(np.random.randint(0, 5000, 1))
+            fig.canvas.mpl_connect('close_event', lambda evt: self.close_track_info_figure(evt, track_id))
+            fig.canvas.mpl_connect('resize_event', lambda evt: fig.tight_layout())
+            fig.set_size_inches(12, 7)
+            fig.canvas.set_window_title("Recording {}, Track {}, Goal {}".format(self.recording_name,
+                                                                                 track_id, goal_idx))
+
+            for feature_idx, feature in enumerate(features):
+                feature_data = goal_data[['frame_id', feature]]
+                sub_plot = plt.subplot(3, 3, feature_idx + 1, title=feature)
+                plt.plot(feature_data.frame_id, feature_data[feature])
+                borders = [feature_data[feature].min() - 1, feature_data[feature].max() + 1]
+                plt.plot([self.current_frame, self.current_frame], borders, "--r")
+                plt.xlabel('frame')
+                sub_plot.grid(True)
+
+        plt.show()
 
     def on_click(self, event):
         artist = event.artist
