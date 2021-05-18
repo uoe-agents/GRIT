@@ -6,8 +6,9 @@ import os
 import sys
 import glob
 import argparse
+import pandas as pd
 
-from core.base import get_scenario_config_dir
+from core.base import get_scenario_config_dir, get_data_dir
 from core.scenario import Scenario
 from loguru import logger
 from core.tracks_import import read_from_csv
@@ -85,6 +86,9 @@ if __name__ == '__main__':
     scenario = Scenario.load(get_scenario_config_dir() + config['scenario'] + '.json')
     episode = scenario.load_episode(config["episode"])
 
+    episode_dataset = pd.read_csv(
+        get_data_dir() + '{}_e{}.csv'.format(config['scenario'], config["episode"]))
+
     goal_recognisers = {'prior': PriorBaseline,
                         'trained_trees': TrainedDecisionTrees,
                         'handcrafted_trees': HandcraftedGoalTrees}
@@ -127,5 +131,6 @@ if __name__ == '__main__':
     config["background_image_path"] = background_image_path
 
     visualization_plot = TrackVisualizer(config, tracks, static_info, meta_info, goal_recogniser=goal_recogniser,
-                                         scenario=scenario, episode=episode, agent_id=config["agent_id"])
+                                         scenario=scenario, episode=episode, agent_id=config["agent_id"],
+                                         episode_dataset=episode_dataset)
     visualization_plot.show()
