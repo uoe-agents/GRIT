@@ -142,7 +142,7 @@ def test_angle_to_goal_angled():
     assert FeatureExtractor.angle_to_goal(state, goal) == pytest.approx(np.pi/4)
 
 
-def test_get_vehicles_in_front():
+def test_get_vehicles_in_route():
     feature_extractor = get_feature_extractor()
     start_lanelet = feature_extractor.lanelet_map.laneletLayer.get(1)
     goal = (3.5, 0.5)
@@ -152,8 +152,8 @@ def test_get_vehicles_in_front():
     frame.add_agent_state(0, AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(1, AgentState(0, 3.0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(2, AgentState(0, 3.0, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
-    vehicles = FeatureExtractor.get_vehicles_in_route(route, frame)
-    assert set(vehicles) == {0, 1}
+    vehicles = FeatureExtractor.get_vehicles_in_route(0, route, frame)
+    assert set(vehicles) == {1}
 
 
 def test_vehicle_in_front():
@@ -164,13 +164,11 @@ def test_vehicle_in_front():
 
     frame = Frame(0)
 
-    frame.add_agent_state(0, AgentState(0, 3.0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+    frame.add_agent_state(0, AgentState(0, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(1, AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(2, AgentState(0, 3.0, 1.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
 
-    state = AgentState(0, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-
-    agent_id, dist = FeatureExtractor.vehicle_in_front(state, route, frame)
+    agent_id, dist = FeatureExtractor.vehicle_in_front(0, route, frame)
     assert agent_id == 1
     assert dist == 2
 
@@ -185,9 +183,8 @@ def test_vehicle_in_front_behind():
 
     frame.add_agent_state(0, AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
     frame.add_agent_state(1, AgentState(0, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0))
-    state = AgentState(0, 2.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-    agent_id, dist = FeatureExtractor.vehicle_in_front(state, route, frame)
+    agent_id, dist = FeatureExtractor.vehicle_in_front(0, route, frame)
     assert agent_id is None
     assert dist == np.inf
 

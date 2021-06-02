@@ -3,6 +3,7 @@ import json
 import imageio
 import matplotlib.pyplot as plt
 import lanelet2
+from lanelet2 import geometry
 from lanelet2.core import BasicPoint2d
 
 from core import map_vis_lanelet2
@@ -115,6 +116,7 @@ class Agent:
         self.initial_frame = metadata.initial_frame
         self.final_frame = metadata.final_frame
         self.num_frames = metadata.final_frame - metadata.initial_frame + 1
+        self.parked = geometry.distance(self.state_history[0].point, self.state_history[-1].point) < 1
 
     def plot_trajectory(self, *args, **kwargs):
         x = [s.x for s in self.state_history]
@@ -202,6 +204,7 @@ class IndEpisodeLoader(EpisodeLoader):
 
         for track_meta in static_info:
             agent_meta = self._agent_meta_from_track_meta(track_meta)
+
             state_history = []
             track = tracks[agent_meta.agent_id]
             num_agent_frames = agent_meta.final_frame - agent_meta.initial_frame + 1
@@ -311,12 +314,3 @@ class Scenario:
             axes.add_artist(circle)
             label = 'G{}'.format(idx)
             axes.annotate(label, (x, y), color='white')
-
-
-
-
-
-
-
-
-

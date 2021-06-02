@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import argparse
 
-from core.base import get_scenario_config_dir
+from core.base import get_scenario_config_dir, get_base_dir
 from core.data_processing import get_dataset
 from decisiontree.dt_goal_recogniser import TrainedDecisionTrees
 from goalrecognition.goal_recognition import PriorBaseline
@@ -65,6 +65,10 @@ def main():
             dataset_predictions[model_name] = unique_samples
             print('{} accuracy: {:.3f}'.format(model_name, accuracy))
             print('{} cross entropy: {:.3f}'.format(model_name, cross_entropy))
+
+            if model_name == 'trained_trees':
+                unique_samples.to_csv(get_base_dir() + '/predictions/{}_{}_{}.csv'.format(
+                    scenario_name, model_name, dataset_name), index=False)
 
         predictions[scenario_name] = dataset_predictions
 

@@ -5,7 +5,7 @@ from multiprocessing import Pool
 import pandas as pd
 
 from core.feature_extraction import FeatureExtractor, GoalDetector
-from core.scenario import Scenario
+from core.scenario import Scenario, Frame
 from core.base import get_data_dir, get_scenario_config_dir, get_base_dir
 
 
@@ -57,6 +57,17 @@ def prepare_episode_dataset(params):
     scenario = Scenario.load(get_scenario_config_dir() + '{}.json'.format(scenario_name))
     feature_extractor = FeatureExtractor(scenario.lanelet_map, scenario.config.goal_types)
     episode = scenario.load_episode(episode_idx)
+
+    # get episode frames, removing parked cars and pedestrians
+    episode_frames = []
+
+    for frame in episode.frames:
+        new_frame = Frame(frame.frame_id)
+        for agent_id, state in frame.agents.items():
+            agent = episode.agents[agent_id]
+            if not (agent.parked or agent.agent_type in ['pedestrian']):
+                new_frame.add_agent_state(agent_id, state)
+        episode_frames.append(new_frame)
 
     samples_list = []
 
@@ -111,7 +122,7 @@ def prepare_episode_dataset(params):
             for idx in range(0, max_idx + 1, step_size):
                 reachable_goals = reachable_goals_list[idx]
                 state = trajectory[idx]
-                frames = episode.frames[trajectory[0].frame_id:state.frame_id + 1]
+                frames = episode_frames[trajectory[0].frame_id:state.frame_id + 1]
 
                 # iterate through each goal for that point in time
                 for goal_idx, route in enumerate(reachable_goals):
@@ -151,8 +162,10 @@ def main():
         for episode_idx in range(len(scenario.config.episodes)):
             params_list.append((scenario_name, episode_idx))
 
-    # for params in params_list:
-    #     prepare_episode_dataset(params)
+
+    # prepare_episode_dataset(('bendplatz', 0))
+    # # for params in params_list:
+    # #     prepare_episode_dataset(params)
 
     with Pool(4) as p:
         p.map(prepare_episode_dataset, params_list)
