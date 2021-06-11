@@ -55,17 +55,22 @@ def add_feature_constraints(features, solver, suffix=''):
             solver.add(feature == goal_features[feature_name])
 
 
+def add_single_tree_model(goal_idx, goal_type, solver, model, suffix=''):
+    prior = float(model.goal_priors.loc[(model.goal_priors.true_goal == goal_idx)
+                                        & (model.goal_priors.true_goal_type == goal_type), 'prior'])
+    goal_features = add_features(goal_idx, suffix)
+    likelihood = add_tree(model.decision_trees[goal_idx][goal_type],
+                          'likelihood_{}_{}{}'.format(goal_idx, goal_type, suffix), goal_features, solver)
+    prob = likelihood * prior
+    return goal_features, likelihood, prob
+
+
 def add_goal_tree_model(reachable_goals, solver, model, suffix=''):
     probs = {}
     features = {}
     likelihoods = {}
     for goal_idx, goal_type in reachable_goals:
-        prior = float(model.goal_priors.loc[(model.goal_priors.true_goal == goal_idx)
-                                            & (model.goal_priors.true_goal_type == goal_type), 'prior'])
-        goal_features = add_features(goal_idx, suffix)
-        likelihood = add_tree(model.decision_trees[goal_idx][goal_type],
-                              'likelihood_{}_{}{}'.format(goal_idx, goal_type, suffix), goal_features, solver)
-        prob = likelihood * prior
+        goal_features, likelihood, prob = add_single_tree_model(goal_idx, goal_type, solver, model, suffix)
         probs[goal_idx] = prob
         features[goal_idx] = goal_features
         likelihoods[goal_idx] = likelihood
@@ -86,7 +91,7 @@ def add_goal_tree_model(reachable_goals, solver, model, suffix=''):
     return features, probs_norm, likelihoods
 
 
-def extract_counter_example(solver, features, probs, likelihoods):
+def extract_counter_example(solver, features, probs, likelihoods, model=None):
     # get the feature values which act as a counterexample
     feature_values = pd.DataFrame(index=FeatureExtractor.feature_names, columns=features)
     for goal_idx, goal_features in features.items():
