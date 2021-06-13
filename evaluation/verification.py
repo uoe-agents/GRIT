@@ -125,6 +125,34 @@ def extract_counter_example(solver, features, probs, likelihoods, model=None):
     return feature_values
 
 
+def extract_tree_counter_example(solver, features, likelihood):
+    feature_values = pd.Series(index=FeatureExtractor.feature_names)
+    for feature_name, feature in features.items():
+        value_str = str(solver.model()[feature])
+        if value_str == 'None':
+            value = None
+        elif value_str == 'True':
+            value = True
+        elif value_str == 'False':
+            value = False
+        else:
+            value = float(eval(value_str))
+        feature_values.loc[feature_name] = value
+
+    value_str = str(solver.model()[likelihood])
+    if value_str == 'None':
+        value = None
+    else:
+        value = float(eval(value_str))
+    feature_values.loc['goal likelihood'] = value
+    return feature_values
+
+
+def verify_proposition(solver, expression):
+    solver.add(Not(expression))
+    return str(solver.check()) == 'unsat'
+
+
 def main():
     scenario_name = 'heckstrasse'
     model = TrainedDecisionTrees.load(scenario_name)
