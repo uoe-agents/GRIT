@@ -35,7 +35,11 @@ def create_args():
                                       help="Choose goal recognition method.", type=str)
 
     config_specification.add_argument('--agent_id', default=None,
-                                      help="Only show details for this agent", type=int)
+                                      help="agent to record in video", type=int)
+    config_specification.add_argument('--goal_idx', default=None,
+                                      help="Goal idx to record in video", type=int)
+    config_specification.add_argument('--goal_type', default=None,
+                                      help="Goal type to record in video", type=str)
 
     # --- Settings ---
     config_specification.add_argument('--scale_down_factor', default=12,
@@ -132,5 +136,6 @@ if __name__ == '__main__':
 
     visualization_plot = TrackVisualizer(config, tracks, static_info, meta_info, goal_recogniser=goal_recogniser,
                                          scenario=scenario, episode=episode, agent_id=config["agent_id"],
-                                         episode_dataset=episode_dataset)
+                                         episode_dataset=episode_dataset, goal_idx=config["goal_idx"],
+                                         goal_type=config["goal_type"])
     visualization_plot.show()
