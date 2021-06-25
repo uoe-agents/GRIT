@@ -35,6 +35,12 @@ class Node:
             text += str(self.decision)
         return text
 
+    def get_depth(self):
+        depth = 0
+        if self.decision is not None:
+            depth += 1 + max(self.decision.true_child.get_depth(), self.decision.false_child.get_depth())
+        return depth
+
     @classmethod
     def from_sklearn(cls, input_tree, feature_types):
         # based on:

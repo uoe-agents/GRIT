@@ -1,5 +1,6 @@
 import pickle
 from sklearn import tree
+import numpy as np
 
 from core.base import get_data_dir, get_scenario_config_dir, get_img_dir
 from core.data_processing import get_goal_priors, get_dataset
@@ -102,3 +103,15 @@ class TrainedDecisionTrees(DecisionTreeGoalRecogniser):
         with open(get_data_dir() + 'trained_trees_{}.p'.format(scenario_name), 'rb') as f:
             return pickle.load(f)
 
+
+if __name__ == '__main__':
+    depths = []
+    for scenario in ['heckstrasse', 'bendplatz', 'frankenberg', 'round']:
+        model = TrainedDecisionTrees.load(scenario)
+        for goal_type_trees in model.decision_trees.values():
+            for tree in goal_type_trees.values():
+                depth = tree.get_depth()
+                print(depth)
+                depths.append(depth)
+    print(np.mean(depths))
+    print(np.std(depths))
