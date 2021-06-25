@@ -1,6 +1,7 @@
 """
 Modified version of code from https://github.com/ika-rwth-aachen/drone-dataset-tools
 """
+import os
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,7 +17,8 @@ from decisiontree.dt_goal_recogniser import DecisionTreeGoalRecogniser
 
 class TrackVisualizer(object):
     def __init__(self, config, tracks, static_info, meta_info, fig=None,
-                 goal_recogniser=None, scenario=None, episode=None, agent_id=None, episode_dataset=None):
+                 goal_recogniser=None, scenario=None, episode=None, agent_id=None, episode_dataset=None,
+                 goal_idx=None, goal_type=None):
         self.config = config
         self.input_path = config["input_path"]
         self.recording_name = config["recording_name"]
@@ -28,7 +30,11 @@ class TrackVisualizer(object):
         self.scenario = scenario
         self.episode = episode
         self.episode_dataset = episode_dataset
-        self.agent_id = agent_id  # agent to record in video
+
+        # agent to record in video
+        self.agent_id = agent_id
+        self.goal_idx = goal_idx
+        self.goal_type = goal_type
 
         # Get configurations
         if self.scale_down_factor % 2 != 0:
@@ -304,11 +310,7 @@ class TrackVisualizer(object):
 
                     if self.agent_id is not None:
                         assert isinstance(self.goal_recogniser, DecisionTreeGoalRecogniser)
-                        goal_idx = 0
-                        goal_type = 'turn-right'
-                        pydot_tree = self.goal_recogniser.decision_trees[goal_idx][goal_type].pydot_tree()
-                        pydot_tree.write_png(get_img_dir() + '/video_tree/{}.png'.format(
-                            self.current_frame, self.agent_id, goal_idx, goal_type))
+                        self.save_tree_image()
                         saved_tree = True
 
                 # Differentiate between using an empty background image and using the virtual background
@@ -328,7 +330,26 @@ class TrackVisualizer(object):
         self.plotted_objects = plotted_objects
 
         if saved_tree:
-            plt.savefig(get_img_dir() + '/video_road/{}.png'.format(self.current_frame))
+            self.save_road_image()
+
+    def save_tree_image(self):
+        assert isinstance(self.goal_recogniser, DecisionTreeGoalRecogniser)
+        goal_idx = self.goal_idx
+        goal_type = self.goal_type
+        pydot_tree = self.goal_recogniser.decision_trees[goal_idx][goal_type].pydot_tree()
+
+        directory = get_img_dir() + '/video_tree'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        pydot_tree.write_png(directory + '/{}.png'.format(self.current_frame))
+
+    def save_road_image(self):
+        directory = get_img_dir() + '/video_road'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        plt.savefig(directory + '/{}.png'.format(self.current_frame))
 
     def display_features_on_click(self, event):
         artist = event.artist
