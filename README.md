@@ -74,6 +74,6 @@ python run_track_visualization.py --scenario heckstrasse --goal_recogniser train
 ```
 
 ## References
-[1] C Brewitt, B Gyvenar, S Garcin, SV Albrecht, "GRIT: Fast, Interpretable, and Verifiable Goal Recognition with Learned Decision Trees for Autonomous Driving", in IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2021
+[1] C. Brewitt, B. Gyvenar, S. Garcin, S. V. Albrecht, "GRIT: Fast, Interpretable, and Verifiable Goal Recognition with Learned Decision Trees for Autonomous Driving", in IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2021
 
-[2] SV Albrecht, C Brewitt, J Wilhelm, B Gyvenar, F Eiras, M Dobre, S Ramamoorthy, "Integrating planning and interpretable goal recognition for autonomous driving", in Proc. of the IEEE International Conference on Robotics and Automation (ICRA), 2021
+[2] S. V. Albrecht, C. Brewitt, J. Wilhelm, B. Gyevnar, F. Eiras, M. Dobre, S. Ramamoorthy, "Interpretable Goal-based Prediction and Planning for Autonomous Driving", in Proc. of the IEEE International Conference on Robotics and Automation (ICRA), 2021
